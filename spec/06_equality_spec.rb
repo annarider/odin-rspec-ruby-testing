@@ -81,7 +81,7 @@ describe 'equality assignment' do
 
   # remove the 'x' before running this test
   it 'amy is not equal to bob' do
-    expect(amy).not_to equal(bob)
+    expect(amy).not_to be(bob)
   end
 
   # remove the 'x' before running this test
