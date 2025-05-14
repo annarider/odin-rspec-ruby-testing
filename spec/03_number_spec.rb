@@ -62,7 +62,7 @@ end
 describe Array do
   context 'when my_array has perfect values' do
     # Write a subject variable 'my_array' that passes all tests.
-    subject(:my_array) { Array.new([-1]) }
+    subject(:my_array) { Array.new([-1, 80]) }
 
     # remove the 'x' before running this test
     it 'has a specific first value' do
@@ -70,7 +70,7 @@ describe Array do
     end
 
     # remove the 'x' before running this test
-    xit 'has a specific last value' do
+    it 'has a specific last value' do
       expect(my_array.last).to be_even.and be < 99
     end
 
