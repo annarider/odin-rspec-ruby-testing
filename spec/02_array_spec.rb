@@ -87,9 +87,10 @@ describe Array do
 
   context 'when using one let variable on two tests' do
     # Make a let variable that will pass both tests.
+    let(:lucky_numbers) { String.new('123') }
 
     # remove the 'x' before running this test
-    xit 'has length of 3' do
+    it 'has length of 3' do
       expect(lucky_numbers.length).to eq(3)
     end
 
