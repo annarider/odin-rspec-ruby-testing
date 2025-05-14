@@ -87,7 +87,7 @@ describe Array do
 
   context 'when using one let variable on two tests' do
     # Make a let variable that will pass both tests.
-    let(:lucky_numbers) { String.new('123') }
+    let(:lucky_numbers) { String.new("\0\0*") }
 
     # remove the 'x' before running this test
     it 'has length of 3' do
@@ -95,7 +95,7 @@ describe Array do
     end
 
     # remove the 'x' before running this test
-    xit 'has sum of 42' do
+    it 'has sum of 42' do
       expect(lucky_numbers.sum).to eq(42)
     end
   end
