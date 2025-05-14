@@ -90,7 +90,7 @@ describe Array do
     end
 
     # remove the 'x' before running this test
-    xit 'has a fourth element' do
+    it 'has a fourth element' do
       expect(my_array[3]).not_to be_nil
     end
   end
