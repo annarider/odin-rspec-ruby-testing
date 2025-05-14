@@ -62,7 +62,7 @@ end
 describe Array do
   context 'when my_array has perfect values' do
     # Write a subject variable 'my_array' that passes all tests.
-    subject(:my_array) { Array.new([-1, 1000, 80]) }
+    subject(:my_array) { Array.new([-1, 1000, 42, 80]) }
 
     # remove the 'x' before running this test
     it 'has a specific first value' do
@@ -85,7 +85,7 @@ describe Array do
     end
 
     # remove the 'x' before running this test
-    xit 'includes a value of 42' do
+    it 'includes a value of 42' do
       expect(my_array).to include(42)
     end
 
