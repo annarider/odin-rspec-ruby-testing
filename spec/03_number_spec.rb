@@ -62,9 +62,10 @@ end
 describe Array do
   context 'when my_array has perfect values' do
     # Write a subject variable 'my_array' that passes all tests.
+    subject(:my_array) { Array.new([-1]) }
 
     # remove the 'x' before running this test
-    xit 'has a specific first value' do
+    it 'has a specific first value' do
       expect(my_array.first).to be_odd.and be <= -1
     end
 
