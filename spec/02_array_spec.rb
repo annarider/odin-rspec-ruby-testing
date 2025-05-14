@@ -78,8 +78,9 @@ describe Array do
     end
 
     # remove the 'x' before running this test
-    xit 'updates length to 1' do
+    it 'updates length to 1' do
       # Update the implicit subject to make this test pass.
+      subject << 'a'
       expect(subject.length).to eq(1)
     end
   end
