@@ -49,6 +49,12 @@ describe FindNumber do
           expect(solution).to eq(8)
         end
       end
+
+
+
+
+
+
     end
 
     # This second example creates the double & specific methods together.
@@ -172,17 +178,20 @@ describe FindNumber do
 
   # ASSIGNMENT: METHOD #2
   describe '#game_over?' do
-    context 'when guess and random_number are equal' do
-      # Create another subject and random_number double with meaningful names.
-      # The subject will need to specify the number value of @guess.
-
-      # Allow the double to receive 'value' and return the same number as @guess.
-
-      # Write a test that would expect game to be_game_over when a guess equals
-      # the random_number double's value above. Remember that this test will not
-      # be able to pass yet because you haven't written the method!
-
-      xit 'is game over' do
+  let(:random_number) { double('random_number', value: 7) }
+  context 'when guess and random_number are equal' do
+    # Create another subject and random_number double with meaningful names.
+    # The subject will need to specify the number value of @guess.
+    # Allow the double to receive 'value' and return the same number as @guess.
+    # Write a test that would expect game to be_game_over when a guess equals
+    # the random_number double's value above. Remember that this test will not
+    # be able to pass yet because you haven't written the method!
+    subject(:game_end) { described_class.new(0, 9, random_number, 7)}
+    
+      it 'is game over' do
+        allow(random_number).to receive(:guess).and_return(7)
+        solution = game_end.game_over?
+        expect(game_end).to be_game_over
       end
     end
 
@@ -193,7 +202,9 @@ describe FindNumber do
     # NOT equal the random_number double's value above.
 
     context 'when guess and random_number are not equal' do
-      xit 'is not game over' do
+      subject(:game_continue) { described_class.new(0, 9, random_number, 3) }
+      it 'is not game over' do
+        expect(game_continue).not_to be_game_over
       end
     end
   end
