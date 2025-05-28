@@ -118,45 +118,68 @@ describe BinaryGame do
         game_input.player_input(min, max)
       end
     end
-
+    
     # ASSIGNMENT #1
-
+    
     # Write a test for the following two context blocks. You will need to
     # provide 1-2 invalid inputs (letters, symbols, or numbers that are not
     # between the min & max integers) and one valid input number (as a string).
-
+    
     # Remember that a stub can be called multiple times and return different values.
     # https://rspec.info/features/3-12/rspec-mocks/configuring-responses/returning-a-value/
-
+    
     context 'when user inputs an incorrect value once, then a valid input' do
       before do
+        symbol = '%'
+        valid_input = '2'
+        allow(game_input).to receive(:gets).and_return(symbol, valid_input)
       end
-
-      xit 'completes loop and displays error message once' do
+      
+      it 'completes loop and displays error message once' do
+        min = game_input.instance_variable_get(:@minimum)
+        max = game_input.instance_variable_get(:@maximum)
+        error_message = "Input error! Please enter a number between #{min} or #{max}."
+        expect(game_input).to receive(:puts).with(error_message).once
+        game_input.player_input(min, max)
       end
     end
-
+    
     context 'when user inputs two incorrect values, then a valid input' do
       before do
+        symbol = '{'
+        letter = 'y'
+        valid_input = '5'
+        allow(game_input).to receive(:gets).and_return(symbol, letter, valid_input)
       end
-
-      xit 'completes loop and displays error message twice' do
+      
+      it 'completes loop and displays error message twice' do
+        min = game_input.instance_variable_get(:@minimum)
+        max = game_input.instance_variable_get(:@maximum)
+        error_message = "Input error! Please enter a number between #{min} or #{max}."
+        expect(game_input).to receive(:puts).with(error_message).twice
+        game_input.player_input(min, max)
       end
     end
   end
-
+  
   # ASSIGNMENT #2
-
+  
   # Create a new instance of BinaryGame and write a test for the following two
   # context blocks.
   describe '#verify_input' do
-    # Located inside #player_input (Looping Script Method)
-    # Query Method -> Test the return value
-
-    # NOTE: #verify_input will only return a number if it is between?(min, max)
-
-    context 'when given a valid input as argument' do
-      xit 'returns valid input' do
+  # Located inside #player_input (Looping Script Method)
+  # Query Method -> Test the return value
+  
+  # NOTE: #verify_input will only return a number if it is between?(min, max)
+  
+  subject(:game_input) { described_class.new(1, 10) }
+  context 'when given a valid input as argument' do
+    it 'returns valid input' do
+      min = game_input.instance_variable_get(:@minimum)
+      max = game_input.instance_variable_get(:@maximum)
+      valid_input = 3
+      result = game_input.verify_input(min, max, valid_input)
+      expect(result).to eq(3)
       end
     end
 
