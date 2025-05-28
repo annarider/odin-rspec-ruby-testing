@@ -180,12 +180,17 @@ describe BinaryGame do
       valid_input = 3
       result = game_input.verify_input(min, max, valid_input)
       expect(result).to eq(3)
-      end
     end
-
-    context 'when given invalid input as argument' do
-      xit 'returns nil' do
-      end
+  end
+  
+  context 'when given invalid input as argument' do
+    it 'returns nil' do
+      min = game_input.instance_variable_get(:@minimum)
+      max = game_input.instance_variable_get(:@maximum)
+      invalid_input = 169
+      result = game_input.verify_input(min, max, invalid_input)
+      expect(result).to be_nil
+    end
     end
   end
 
