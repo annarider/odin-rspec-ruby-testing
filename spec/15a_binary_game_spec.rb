@@ -364,21 +364,33 @@ describe BinaryGame do
     #  by calling #display_guess.
 
     # Create a new subject and an instance_double for BinarySearch.
+    subject(:game_display) { described_class.new(1, 10) }
+    let(:search_display) { instance_double(BinarySearch) }
 
     before do
-      # You'll need to create a few method stubs.
+      allow(search_display).to receive(:make_guess).and_return(5)
+      allow(search_display).to receive(:update_range).and_return(5)
+      allow(search_display).to receive(:min).and_return(1)
+      allow(search_display).to receive(:max).and_return(10)
+      allow(search_display).to receive(:guess).and_return(3)
+      allow(search_display).to receive(:game_over?)
     end
 
     # Command Method -> Test the change in the observable state
-    xit 'increases guess_count by one' do
+    it 'increases guess_count by one' do
+      expect { game_display.display_turn_order(search_display) }.to change { game_display.instance_variable_get(:@guess_count) }.by(1)
     end
 
     # Method with Outgoing Command -> Test that a message is sent
-    xit 'sends make_guess' do
+    it 'sends make_guess' do
+      expect(search_display).to receive(:make_guess)
+      game_display.display_turn_order(search_display)
     end
 
     # Method with Outgoing Command -> Test that a message is sent
-    xit 'sends update_range' do
+    it 'sends update_range' do
+      expect(search_display).to receive(:update_range)
+      game_display.display_turn_order(search_display)
     end
 
     # Using method expectations can be confusing. Stubbing the methods above
@@ -390,8 +402,7 @@ describe BinaryGame do
     # paragraph, move it to the before hook, and run the tests.
     # All of the tests should continue to pass. Replace 'binary_search_turn'
     # with whatever you named your BinarySearch instance double if necessary.
-    # allow(binary_search_turn).to receive(:game_over?)
-
+    
     # Now, in the lib/15a_binary_game.rb file, comment out either line,
     # binary_search.make_guess or binary_search.update_range. Resave the file
     # and rerun the tests. The test for the method that you commented out will
